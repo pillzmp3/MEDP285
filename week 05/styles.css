@@ -1,0 +1,72 @@
+
+nav {
+	font-size: 20px;
+	text-align: center;
+	margin: 5px 5px 5px 5px;
+	padding: 0px;
+}
+
+
+body {
+	background-color: white;
+	color: black;
+	font-family: "Cormorant", serif;
+  	font-optical-sizing: auto;
+  	font-weight: <weight>;
+  	font-style: normal; 
+}
+
+#wrapper {
+	width: 95%;
+	margin: 0px auto 0px auto;
+	padding: 10px;
+}
+
+#sectional {
+	background-color: #B784A7;
+	padding: 10px;
+}
+/*^this has to be done so as to properly indent multiple paragraphs idk why tho*/
+
+.blockquote {
+	text-align: left;
+	padding: 10px 20px 10px 20px;
+	margin: 5px 20px 5px 20px;
+	color: white;
+	text-indent: 20px;
+}
+
+h1, h2 {
+	text-align: center;
+	color: white;
+	background-color: #B784A7;
+	margin: 50px;
+	padding: 5px;
+}
+
+img.regular {
+	height: 500px;
+	width: 500px;
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
