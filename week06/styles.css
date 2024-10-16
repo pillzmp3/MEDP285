@@ -1,0 +1,137 @@
+.geologica-<uniquifier> {
+  font-family: "Geologica", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0,
+    "SHRP" 0;
+}
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+	font-family: "Geologica";
+	padding: 0;
+	margin: 0;
+	background-color: #fff5f5;
+}
+div.container {
+	width: 80%;
+}
+header, nav, main, aside, footer {
+	padding: 10px;
+}
+header {
+	background-color:  #fad1cc;
+}
+h2 {
+	color: #99D8FF;
+}
+h5 {
+	font-weight: 500;
+	color: white;
+}
+nav {
+  background-color:  #fac4c0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+nav ul li {
+display: inline-block;
+background-color: #fffafa;
+padding:6px;
+width: 100px;
+text-align: center;
+border: solid 1px #FF9999;
+}
+
+ul {
+	list-style-type: none;
+}
+main {
+	background-color: #fff5f5;
+	float: left;
+	width: 70%;
+	padding: 20px;
+}
+main img.thumbnail {
+	float: left;
+	margin: 12px;
+}
+main img.thumbnail2 {
+	float: left;
+	margin: 20px;
+	position: relative;
+	right: 60px;
+	opacity: 0.7;
+}
+main div.description {
+	background-color: #99D8FF;
+	color: #FF9999;
+	clear: both;
+	float: none;
+	margin-bottom: 40px;
+	font-weight: 200;
+}
+aside {
+	background-color: #99D8FF;
+	color: #FF9999;
+	float: left;
+	width: 30%;
+}
+footer {
+	background-color: #fff5f5;
+	color: #99D8FF;
+	float: none;
+	clear: both;
+}
+div.buttonAbsolute {
+	background-color: white;
+	position: absolute;
+	right: 20px;
+	top:10px;
+	padding: 10px;
+	z-index: 500;
+}
+
+div.buttonRelative {
+	background-color: #99D8FF;
+	position: relative;
+	left: 0px;
+	top: 20px;
+	padding: 5px;
+	z-index:3;
+	width: 100px;
+	opacity: 0.5;
+}
+div.page2container {
+    position: relative;
+    width: 100vw;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+}
+div.page2wrapper {
+	text-align: left;
+	padding: 5px;
+	background-color: #AA9393;
+    position: sticky;
+    top: 0;
+    background: radial-gradient(circle, #FF9999 0%, #99D8FF 50%);
+}
+div.page2wrapper2 {
+	text-align: right;
+	padding: 5px;
+	background-color: #AA9393;
+    position: sticky;
+    top: 0;
+    background: radial-gradient(circle, #FF9999 0%, #99D8FF 50%);
+}
