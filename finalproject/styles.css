@@ -1,0 +1,56 @@
+.container {
+    background-color: #6496ff;
+    font-family: "Raleway";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#sketch-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#wrapper {
+    background-color: #6496ff;
+	width: 90%;
+	margin: 0px auto 0px auto;
+	padding: 40px;
+}
+
+#blockquote {
+    font-family: "Raleway";
+    color:rgb(255, 255, 255);
+	font-optical-sizing: auto;
+	padding: 0px 30px 0px 20px;
+}
+
+header {
+	font-family: "Raleway";
+    color:rgb(65, 58, 158);
+	font-size: 2vw;
+	text-align: center;
+}
+
+nav {
+font-family: "Raleway";
+color:rgb(255, 255, 255);
+font-size: 20px;
+text-align: center;
+margin: 10px 10px 10px 10px;
+padding: 10px;
+border: 1px solid rgb(255, 255, 255);
+}
+
+body {
+    background-color: #6496ff;
+	font-family: "Raleway";
+    color:rgb(255, 255, 255);
+	font-optical-sizing: auto;
+	padding:0px;
+	margin: 0px 0px 0px 0px;
+}

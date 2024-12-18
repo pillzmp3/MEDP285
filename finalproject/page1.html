@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Melody</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geologica:wght@100..900&family=Handjet:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <p>
+        <a href="index.html">HOME</a> <a href="page1.html">MELODY</a> <a href="page2.html">HARMONY</a> <a href="page3.html">CHORD TONES</a>
+        </p>
+    </div>
+    <div class="sketch-container">
+        <script>
+            let spheres = [];
+            let sounds = [];
+            let pulseSizes = [];
+            let pulsing = [];
+            let font;
+            const sphereData = [
+                { x: -200, y: 0, note: "G" },
+                { x: -100, y: 0, note: "G" },
+                { x: 0, y: 0, note: "A" },
+                { x: 100, y: 0, note: "C" },
+                { x: 200, y: 0, note: "A" },
+            ];
+
+            function preload() {
+                sounds[0] = loadSound('sound1.mp3');
+                sounds[1] = loadSound('sound2.mp3');
+                sounds[2] = loadSound('sound3.mp3');
+                sounds[3] = loadSound('sound4.mp3');
+                sounds[4] = loadSound('sound5.mp3');
+                font = loadFont('texgyreadventor-regular.otf');
+            }
+
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+                textFont(font);
+
+                sphereData.forEach((data, index) => {
+                    spheres.push({
+                        position: createVector(data.x, data.y),
+                        sound: sounds[index],
+                        note: data.note,
+                    });
+                    pulseSizes[index] = 30;
+                    pulsing[index] = false;
+                });
+
+                textAlign(CENTER, CENTER);
+                textSize(20);
+                noLoop(); 
+            }
+
+            function draw() {
+                background(65, 58, 158);
+
+                spheres.forEach((s, i) => {
+                    fill(255);
+                    text(
+                        s.note,
+                        width / 2 + s.position.x * (width / 600), 
+                        height / 2 + s.position.y - 50
+                    ); 
+
+                    fill(100, 150, 255);
+                    ellipse(
+                        width / 2 + s.position.x * (width / 600), 
+                        height / 2 + s.position.y,
+                        pulseSizes[i]
+                    ); 
+                });
+            }
+
+            function mousePressed() {
+                spheres.forEach((s, i) => {
+                    // Calculate distance between mouse and sphere
+                    let d = dist(
+                        mouseX,
+                        mouseY,
+                        width / 2 + s.position.x * (width / 600),
+                        height / 2 + s.position.y
+                    );
+
+                    if (d < pulseSizes[i] / 2) {
+                        
+                        if (s.sound.isPlaying()) {
+                            s.sound.stop();
+                        }
+                        s.sound.play();
+
+                        pulsing[i] = true;
+
+                        requestAnimationFrame(() => redrawSphere(i));
+                    }
+                });
+            }
+
+            
+            function redrawSphere(index) {
+                background(65, 58, 158);
+
+                spheres.forEach((s, i) => {
+                    fill(255);
+                    text(
+                        s.note,
+                        width / 2 + s.position.x * (width / 600),
+                        height / 2 + s.position.y - 50
+                    ); 
+
+                    if (i === index) {
+                        if (pulsing[i]) {
+                            pulseSizes[i] += 2;
+                            if (pulseSizes[i] >= 50) {
+                                pulsing[i] = false;
+                            }
+                        } else if (pulseSizes[i] > 30) {
+                            pulseSizes[i] -= 2;
+                        }
+                    }
+
+                    fill(100, 150, 255);
+                    ellipse(
+                        width / 2 + s.position.x * (width / 600),
+                        height / 2 + s.position.y,
+                        pulseSizes[i]
+                    ); 
+                });
+            }
+
+            function windowResized() {
+                resizeCanvas(windowWidth, windowHeight);
+                redraw(); 
+            }
+        </script>
+    </div>
+</body>
+</html>

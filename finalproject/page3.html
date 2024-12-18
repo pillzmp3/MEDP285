@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmony Breakdown</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/addons/p5.sound.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geologica:wght@100..900&family=Handjet:wght@100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jura:wght@300..700&family=Raleway:ital,wght@0,100..900;1,100..900&family=Sono:wght@200..800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <p>
+        <a href="index.html">HOME</a> <a href="page1.html">MELODY</a> <a href="page2.html">HARMONY</a> <a href="page3.html">CHORD TONES</a>
+        </p>
+    </div>
+    <div class="sketch-container">
+    <script>
+    let squares = [];
+    let sounds = [];
+    let pulseSizes = [];
+    let pulsing = [];
+    const labels = ["C", "E", "G", "G", "B", "D#"];
+
+function preload() {
+    sounds[0] = loadSound('note1.mp3');
+    sounds[1] = loadSound('note2.mp3');
+    sounds[2] = loadSound('note3.mp3');
+    sounds[3] = loadSound('note4.mp3');
+    sounds[4] = loadSound('note5.mp3');
+    sounds[5] = loadSound('note6.mp3');
+    font = loadFont('texgyreadventor-regular.otf');
+}
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    textFont(font);
+
+    
+    let squareSize = 100;
+    let gap = 20;
+    let startX = (width - (6 * squareSize + 5 * gap)) / 2;
+    let startY = height / 2 - squareSize / 2;
+
+    for (let i = 0; i < 6; i++) {
+        squares.push({
+            x: startX + i * (squareSize + gap),
+            y: startY,
+            size: squareSize,
+            sound: sounds[i],
+            label: labels[i],
+        });
+        pulseSizes[i] = squareSize;
+        pulsing[i] = false;
+    }
+
+    textAlign(CENTER, CENTER);
+    textSize(20);
+    noLoop(); 
+}
+
+function draw() {
+    background('#413A9E');
+
+   
+    squares.forEach((square, i) => {
+        if (i >= 3) {
+            fill('#507FCC'); 
+        } else {
+            fill('#6496FF'); 
+        }
+        noStroke();
+        rect(square.x, square.y, pulseSizes[i], pulseSizes[i]); 
+
+       
+        fill(255);
+        text(
+            square.label,
+            square.x + square.size / 2,
+            square.y - 20
+        );
+    });
+}
+
+function mousePressed() {
+    squares.forEach((square, i) => {
+        if (
+            mouseX > square.x &&
+            mouseX < square.x + square.size &&
+            mouseY > square.y &&
+            mouseY < square.y + square.size
+        ) {
+            if (square.sound.isPlaying()) {
+                square.sound.stop();
+            }
+            square.sound.play();
+            pulsing[i] = true;
+            requestAnimationFrame(() => redrawSquare(i));
+        }
+    });
+}
+
+function redrawSquare(index) {
+    background('#413A9E');
+
+    squares.forEach((square, i) => {
+        if (i >= 3) {
+            fill('#507FCC'); 
+        } else {
+            fill('#6496FF'); 
+        }
+        noStroke();
+
+        if (i === index) {
+            if (pulsing[i]) {
+                pulseSizes[i] += 2;
+                if (pulseSizes[i] >= squares[i].size + 20) {
+                    pulsing[i] = false;
+                }
+            } else if (pulseSizes[i] > squares[i].size) {
+                pulseSizes[i] -= 2;
+            }
+        }
+
+        rect(square.x, square.y, pulseSizes[i], pulseSizes[i]); 
+
+        
+        fill(255);
+        text(
+            square.label,
+            square.x + square.size / 2,
+            square.y - 20
+        );
+    });
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+    redraw(); 
+}
+    </script>
+</div>
+</body>
+</html>
